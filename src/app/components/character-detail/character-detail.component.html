@@ -1,0 +1,62 @@
+
+<div class="container">
+  <div *ngIf="loading$ | async" class="loading-container">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div *ngIf="!(loading$ | async) && (character$ | async) as character">
+    <a routerLink="/" class="back-link">
+      <mat-icon>arrow_back</mat-icon> Back to Films
+    </a>
+    
+    <mat-card class="character-card">
+      <mat-card-header>
+        <mat-card-title class="character-name">{{ character.name }}</mat-card-title>
+      </mat-card-header>
+      
+      <mat-card-content>
+        <div class="character-details">
+          <div class="detail-grid">
+            <div class="detail-item">
+              <strong>Height:</strong> {{ character.height === 'unknown' ? 'Unknown' : (character.height + ' cm') }}
+            </div>
+            <div class="detail-item">
+              <strong>Mass:</strong> {{ character.mass === 'unknown' ? 'Unknown' : (character.mass + ' kg') }}
+            </div>
+            <div class="detail-item">
+              <strong>Hair Color:</strong> {{ character.hair_color | titlecase }}
+            </div>
+            <div class="detail-item">
+              <strong>Skin Color:</strong> {{ character.skin_color | titlecase }}
+            </div>
+            <div class="detail-item">
+              <strong>Eye Color:</strong> {{ character.eye_color | titlecase }}
+            </div>
+            <div class="detail-item">
+              <strong>Birth Year:</strong> {{ character.birth_year }}
+            </div>
+            <div class="detail-item">
+              <strong>Gender:</strong> {{ character.gender | titlecase }}
+            </div>
+          </div>
+        </div>
+        
+        <mat-divider></mat-divider>
+        
+        <h3 class="films-title">Films</h3>
+        
+        <div *ngIf="loading$ | async" class="loading-container">
+          <mat-spinner diameter="40"></mat-spinner>
+        </div>
+        
+        <mat-list *ngIf="!(loading$ | async)">
+          <mat-list-item *ngFor="let film of films$ | async" class="film-item">
+            <a [routerLink]="['/film', getFilmId(film.url)]">
+              {{ film.title }} (Episode {{ film.episode_id }})
+            </a>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

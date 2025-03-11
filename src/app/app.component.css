@@ -1,0 +1,45 @@
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #121212;
+  background-image: url('https://images.unsplash.com/photo-1533652475678-5b6124c561be?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-blend-mode: overlay;
+}
+
+.app-header {
+  padding: 20px;
+  text-align: center;
+  color: #ffd700;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+}
+
+.app-content {
+  flex: 1;
+  padding: 20px 0;
+}
+
+.app-footer {
+  padding: 15px;
+  text-align: center;
+  color: #cccccc;
+  background-color: rgba(0, 0, 0, 0.8);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .app-header h1 {
+    font-size: 1.8rem;
+  }
+}

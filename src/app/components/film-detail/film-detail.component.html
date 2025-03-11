@@ -1,0 +1,51 @@
+
+<div class="container">
+  <div *ngIf="loading$ | async" class="loading-container">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div *ngIf="!(loading$ | async) && (film$ | async) as film">
+    <a routerLink="/" class="back-link">
+      <mat-icon>arrow_back</mat-icon> Back to Films
+    </a>
+    
+    <mat-card class="film-card">
+      <mat-card-header>
+        <mat-card-title class="film-title">{{ film.title }}</mat-card-title>
+        <mat-card-subtitle>Episode {{ film.episode_id }}</mat-card-subtitle>
+      </mat-card-header>
+      
+      <mat-card-content>
+        <div class="film-info">
+          <p><strong>Director:</strong> {{ film.director }}</p>
+          <p><strong>Producer:</strong> {{ film.producer }}</p>
+          <p><strong>Release Date:</strong> {{ film.release_date | date:'longDate' }}</p>
+        </div>
+        
+        <mat-divider></mat-divider>
+        
+        <div class="crawl-container">
+          <div class="crawl">
+            <p>{{ film.opening_crawl }}</p>
+          </div>
+        </div>
+        
+        <mat-divider></mat-divider>
+        
+        <h3 class="characters-title">Characters</h3>
+        
+        <div *ngIf="loading$ | async" class="loading-container">
+          <mat-spinner diameter="40"></mat-spinner>
+        </div>
+        
+        <mat-list *ngIf="!(loading$ | async)">
+          <mat-list-item *ngFor="let character of characters$ | async" class="character-item">
+            <a [routerLink]="['/character', getCharacterId(character.url)]">
+              {{ character.name }}
+            </a>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+
+<div class="container">
+  <h1 class="title">Star Wars Films</h1>
+  
+  <div *ngIf="loading$ | async" class="loading-container">
+    <mat-spinner></mat-spinner>
+  </div>
+  
+  <mat-card *ngIf="!(loading$ | async)">
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item *ngFor="let film of films$ | async" class="film-item">
+          <a [routerLink]="['/film', getFilmId(film.url)]">
+            <h3>{{ film.title }} (Episode {{ film.episode_id }})</h3>
+            <p>{{ film.release_date | date:'longDate' }}</p>
+          </a>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+</div>
