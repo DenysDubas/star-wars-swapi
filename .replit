@@ -1,0 +1,25 @@
+entrypoint = "server.ts"
+run = "npm run start"
+modules = ["angular-node-20"]
+
+[nix]
+channel = "stable-24_05"
+
+[[ports]]
+localPort = 4200
+externalPort = 80
+
+[deployment]
+run = ["sh", "-c", "node dist/my-angular-project/server/server.mjs"]
+build = ["sh", "-c", "npm run build"]
+
+[workflows]
+runButton = "Run"
+
+[[workflows.workflow]]
+name = "Run"
+author = 40409167
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm start"

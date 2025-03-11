@@ -29,7 +29,7 @@ import { StarWarsService } from '../../services/star-wars.service';
     MatIconModule
   ],
   templateUrl: './film-detail.component.html',
-  styleUrls: ['./film-detail.component.css']
+  styleUrls: ['./film-detail.component.scss']
 })
 export class FilmDetailComponent implements OnInit {
   film$: Observable<Film | null>;
@@ -51,7 +51,7 @@ export class FilmDetailComponent implements OnInit {
       const id = params.get('id');
       if (id) {
         this.store.dispatch(StarWarsActions.loadFilm({ id }));
-        
+
         this.film$.subscribe(film => {
           if (film) {
             this.store.dispatch(StarWarsActions.loadFilmCharacters({ film }));

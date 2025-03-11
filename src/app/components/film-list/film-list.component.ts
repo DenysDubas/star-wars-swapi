@@ -23,7 +23,7 @@ import { StarWarsService } from '../../services/star-wars.service';
     MatProgressSpinnerModule
   ],
   templateUrl: './film-list.component.html',
-  styleUrls: ['./film-list.component.css']
+  styleUrls: ['./film-list.component.scss']
 })
 export class FilmListComponent implements OnInit {
   films$: Observable<Film[]>;

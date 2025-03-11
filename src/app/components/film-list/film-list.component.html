@@ -1,11 +1,11 @@
 
 <div class="container">
   <h1 class="title">Star Wars Films</h1>
-  
+
   <div *ngIf="loading$ | async" class="loading-container">
     <mat-spinner></mat-spinner>
   </div>
-  
+
   <mat-card *ngIf="!(loading$ | async)">
     <mat-card-content>
       <mat-list>
